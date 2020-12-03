@@ -25,11 +25,10 @@ Após esse comando, as dependências do Node.js serão instaladas, permitindo qu
  ```sh
 $ npx create-react-app my-app
 $ cd my-app
+$ yarn add @material-ui/core
 $ yarn start
 ```
 
-```sh
-$ yarn add @material-ui/core
-```
-
 >Esse processo pode ser demorado, a depender da máquina.
+
+Depois de completada essa parte, o navegador abrirá automaticamente no endereço `localhost:3000`. Inicialmete, será disposta a tela de login do site.
