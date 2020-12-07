@@ -34,7 +34,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
+	},
+	formControl: {
+    margin: theme.spacing(1),
+    minWidth: "55%"
+  }
 }));
 
 export default function SignUp() {
