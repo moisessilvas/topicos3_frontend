@@ -6,6 +6,7 @@ import Tela_Cadastro from './pages/Cadastro';
 import Tela_Vagas from './pages/Vagas';
 import Tela_Pagamento from './pages/Pagamento';
 import Tela_Cadastro_Cartao from './pages/Cadastrar_Cartao';
+import Tela_Testes from './pages/testes/'
 
 export default function Routes() {
     return (
@@ -17,7 +18,7 @@ export default function Routes() {
           <Route path="/vagas" exact component={Tela_Vagas} />
           <Route path="/pagamento" exact component={Tela_Pagamento} />
           <Route path="/cadastrar_cartao" exact component={Tela_Cadastro_Cartao} />
-  
+          <Route path="/teste" exact component={Tela_Testes} />
         </Switch>
       </BrowserRouter>
     );
