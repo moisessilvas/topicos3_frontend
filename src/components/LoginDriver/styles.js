@@ -40,3 +40,11 @@ export const InitialBanner = styled(Grid)`
     background-size: cover;
     background-position: center;
 `;
+
+export const MUIButton = styled(Button)`
+`;
+
+export const GridButton = styled(Grid)`
+    display: flex;
+    justify-content: space-evenly;
+`;

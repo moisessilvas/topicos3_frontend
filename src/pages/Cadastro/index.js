@@ -8,16 +8,17 @@ import SignUpDriver from './../../components/SignUpDriver';
 export default function SignUp() {
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div>
-        <Avatar>
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Cadastrar
-        </Typography>
-        <SignUpDriver />
-      </div>
-    </Container>
+    <SignUpDriver />
+    // <Container component="main" maxWidth="xs">
+    //   <CssBaseline />
+    //   <div>
+    //     <Avatar>
+    //     </Avatar>
+    //     <Typography component="h1" variant="h5">
+    //       Cadastrar
+    //     </Typography>
+    //     <SignUpDriver />
+    //   </div>
+    // </Container>
   );
 }

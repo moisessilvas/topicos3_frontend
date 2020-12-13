@@ -4,13 +4,11 @@ import { login } from './../../services/Auth'
 import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import {
-    LoginContainer,
-    InitialBanner,
-    LoginPage,
-    LoginColumn,
-    LoginForm,
-    LoginField,
-    LoginButton
+    LoginContainer, InitialBanner,
+    LoginPage, LoginColumn,
+    LoginForm, LoginField,
+    LoginButton,
+    MUIButton, GridButton
 } from '../LoginDriver/styles'
 import Typography from '@material-ui/core/Typography';
 
@@ -41,17 +39,17 @@ class DriverLogin extends React.Component {
             console.log('Preencha e-mail e senha para continuar!')
         } else {
             try {
-                const response = await axios.post(`https://topicos3-back-end.herokuapp.com/driver/login`,  driver);
+                const response = await axios.post(`https://topicos3-back-end.herokuapp.com/driver/login`, driver);
                 login(response.data.token);
                 this.props.history.push("/estacionamento");
                 console.log(response.data)
-              } catch (err) {
-                  console.log("Houve um problema com o login, verifique suas credenciais.")
+            } catch (err) {
+                console.log("Houve um problema com o login, verifique suas credenciais.")
                 this.setState({
-                  error:
-                    "Houve um problema com o login, verifique suas credenciais."
+                    error:
+                        "Houve um problema com o login, verifique suas credenciais."
                 });
-              }
+            }
         }
     }
     render() {
@@ -64,13 +62,17 @@ class DriverLogin extends React.Component {
                             Login
                         </Typography>
                         <LoginForm onSubmit={this.handleSubmit}>
-                            <LoginField  onChange={this.handleChange} variant="outlined" margin="normal" required fullWidth
+                            <LoginField onChange={this.handleChange} variant="outlined" margin="normal" required fullWidth
                                 id="email" label="Email" name="email" autoComplete="email" autoFocus />
-                            <LoginField  onChange={this.handleChange} variant="outlined" margin="normal" required fullWidth
+                            <LoginField onChange={this.handleChange} variant="outlined" margin="normal" required fullWidth
                                 name="password" label="Senha" type="password" id="password" autoComplete="current-password" />
                             <LoginButton onClick={() => this.handleSubmit} type="submit" fullWidth variant="contained" color="primary">Entrar</LoginButton>
-                            <NavLink to="/Tela_RedefinirSenha" className="navlink-padrao-style"><p className="btn-fp-main">Esqueci a Senha</p></NavLink>
                         </LoginForm>
+                        <br></br>
+                            <MUIButton onClick={() => this.props.history.push("/cadastro")}  
+                            type="submit" variant="contained" color="default"> Fazer cadastro</MUIButton>
+                        
+
                     </LoginColumn>
                 </LoginContainer>
             </LoginPage>

@@ -1,6 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from "axios";
+import { CenterPage, GridForm, MUIButton, GridButton } from './styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+
 
 
 class SignUpDriver extends React.Component {
@@ -13,9 +17,9 @@ class SignUpDriver extends React.Component {
             email: "",
             password: "",
             confirmPassword: "",
-            aux_brand:"",
-            aux_licensePlate:"",
-            cars:[{
+            aux_brand: "",
+            aux_licensePlate: "",
+            cars: [{
                 brand: "",
                 licensePlate: "",
             }]
@@ -27,9 +31,9 @@ class SignUpDriver extends React.Component {
         this.setState({ [evt.target.name]: evt.target.value });
         console.log(evt.target.value);
     }
-    
-    handleSelect_g(event){
-        this.setState({ pcd: event.target.value});
+
+    handleSelect_g(event) {
+        this.setState({ pcd: event.target.value });
     }
 
     handleSubmit = evt => {
@@ -38,15 +42,15 @@ class SignUpDriver extends React.Component {
         //this.state.aux_brand: this.state.cars[0].brand;
         //this.state.aux_licensePlate: this.state.cars[0].licensePlate;
         console.log(this.state.aux_brand);
-        console.log(this.state.aux_licensePlate); 
+        console.log(this.state.aux_licensePlate);
         var boolDeficiency;
-        if (this.state.deficiency === 'true'){
+        if (this.state.deficiency === 'true') {
             boolDeficiency = true;
-        } 
+        }
         else {
             boolDeficiency = false;
         }
-        this.setState({loading: true})
+        this.setState({ loading: true })
         const driver = {
             name: this.state.name,
             deficiency: boolDeficiency,
@@ -66,14 +70,17 @@ class SignUpDriver extends React.Component {
 
         // Validação de senha
         if (driver.password !== aux.confirmPassword) {
+            console.log(driver.password);
+            console.log(aux.confirmPassword);
             alert("As senhas inseridas não são iguais!");
         } else {
             axios.post(`https://topicos3-back-end.herokuapp.com/driver`, driver)
-            .then(res => {
-              console.log(res);
-              console.log(res.data);
-              console.log(res.driver);
-            })
+                .then(res => {
+                    console.log(res);
+                    this.props.history.push("/");
+                    console.log(res.data);
+                    console.log(res.driver);
+                })
         }
     }
 
@@ -81,36 +88,28 @@ class SignUpDriver extends React.Component {
     render() {
 
         return (
-            <form onSubmit={this.handleSubmit}  id="forms-RI-Cadastro">
-            <h1 id="tittle-forms-cme">Formulário de Cadastro</h1>
-            <br></br>
-            <p id="RI-Title-Cadastro" >Nome</p>
-            <input onChange={this.handleChange} name="name" placeholder="Insira o nome do representante de instituição:" id="RI-Cadastro" required />
-            <p id="RI-Title-Cadastro" >E-mail</p>
-            <input onChange={this.handleChange} name="email" placeholder="Insira seu e-mail:" id="RI-Cadastro" required/>
-            <p id="RI-Title-Cadastro" >Senha</p>
-            <input onChange={this.handleChange} name="password" placeholder="Insira uma senha:" id="RI-Cadastro" required/>
-            <p id="RI-Title-Cadastro" >Confirmar Senha</p>
-            <input onChange={this.handleChange} name="confirmPassword" placeholder="Confirmar senha inserida:" id="RI-Cadastro" required/>
-            <p id="RI-Title-Cadastro" >CPF</p>
-            <input onChange={this.handleChange} name="cpf" placeholder="Insira seu CPF:" id="RI-Cadastro" maxLength='11'/>
-            <p id="RI-Title-Cadastro-Paciente" >Possui deficiência</p>
-            <select onChange={this.handleSelect_g} id="RI-Solicitar-Forms" required>
-                <option></option>
-                <option value='true'>Sim</option>
-                <option value='false'>Não</option>
-            </select>
-            <p id="RI-Title-Cadastro" >Carro</p>
-            <input onChange={this.handleChange} name="aux_brand" placeholder="Carro:" id="RI-Cadastro" required />
-            <p id="RI-Title-Cadastro" >Placa</p>
-            <input onChange={this.handleChange} name="aux_licensePlate" placeholder="Placa:" id="RI-Cadastro" required/>
-            <br></br>                
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <button onClick={() => this.handleSubmit} id="RI-Cadastro">
-                    <p>Enviar</p>
-                </button>
-            </div>
-        </form>
+            <CenterPage>
+                <GridForm onSubmit={this.handleSubmit}>
+                    <Typography component="h1" variant="h5" >Formulário de Cadastro </Typography>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Nome" name="name"
+                        placeholder="Insira o nome do representante de instituição:" required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Email" name="email"
+                        placeholder="Insira seu e-mail:" required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Senha" name="password"
+                        placeholder="Insira uma senha:" required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Confirmar Senha" name="confirmPassword"
+                        placeholder="Confirmar senha inserida:" required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="CPF" name="cpf"
+                        placeholder="Insira seu CPF:" inputProps={{maxLength: 11, }} required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Carro" name="aux_brand"
+                        placeholder="Carro" required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Placa" name="aux_licensePlate"
+                        placeholder="Placa:" required margin="normal" fullWidth></TextField>
+                    <GridButton>
+                        <MUIButton onClick={() => this.handleSubmit} type="submit" variant="contained" color="primary">ENVIAR</MUIButton>
+                    </GridButton>
+                </GridForm>
+            </CenterPage>
         );
     }
 }
