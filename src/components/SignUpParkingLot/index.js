@@ -1,6 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from "axios";
+import { CenterPage, GridForm, MUIButton, GridButton } from './styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+
 
 class SignUpParkLot extends React.Component {
     constructor() {
@@ -31,13 +35,13 @@ class SignUpParkLot extends React.Component {
         axios.post(`https://topicos3-back-end.herokuapp.com/parkingLot`, parkingLot, {
             headers: {
                 "x-access-token": token
-              }
+            }
         })
-        .then(res => {
-            console.log(res);
-            console.log(res.data);
-            console.log(res.driver);
-        })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                console.log(res.driver);
+            })
 
     }
 
@@ -45,22 +49,20 @@ class SignUpParkLot extends React.Component {
     render() {
 
         return (
-            <form onSubmit={this.handleSubmit} id="forms-RI-Cadastro">
-                <h1 id="tittle-forms-cme">Formulário de Cadastro</h1>
-                <br></br>
-                <p >Nome</p>
-                <input onChange={this.handleChange} name="name" placeholder="Insira o nome do representante de instituição:" required />
-                <p>CNPJ</p>
-                <input onChange={this.handleChange} name="cnpj" placeholder="Insira seu CNPJ:" maxLength='13' />
-                <p>Total de vagas</p>
-                <input onChange={this.handleChange} name="parkingSpacesTotal" placeholder="Insira o total de vagas:" required />
-                <br></br>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <button onClick={() => this.handleSubmit}>
-                        <p>Enviar</p>
-                    </button>
-                </div>
-            </form>
+            <CenterPage>
+                <GridForm onSubmit={this.handleSubmit}>
+                    <Typography component="h1" variant="h5" >Cadastrar Estacionamento</Typography>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Nome" name="name"
+                        placeholder="Insira o nome do representante de instituição:" required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="CNPJ" name="cnpj"
+                        placeholder="Insira seu CNPJ:" inputProps={{ maxLength: 13, }} required margin="normal" fullWidth></TextField>
+                    <TextField onChange={this.handleChange} variant="outlined" label="Total de vagas" name="parkingSpacesTotal"
+                        placeholder="Insira o total de vagas:" required margin="normal" fullWidth></TextField>
+                    <GridButton>
+                        <MUIButton onClick={() => this.handleSubmit} type="submit" variant="contained" color="primary">ENVIAR</MUIButton>
+                    </GridButton>
+                </GridForm>
+            </CenterPage>
         );
     }
 }

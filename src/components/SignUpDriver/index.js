@@ -96,9 +96,9 @@ class SignUpDriver extends React.Component {
                     <TextField onChange={this.handleChange} variant="outlined" label="Email" name="email"
                         placeholder="Insira seu e-mail:" required margin="normal" fullWidth></TextField>
                     <TextField onChange={this.handleChange} variant="outlined" label="Senha" name="password"
-                        placeholder="Insira uma senha:" required margin="normal" fullWidth></TextField>
+                        type="password" autoComplete="off" placeholder="Insira uma senha:" required margin="normal" fullWidth></TextField>
                     <TextField onChange={this.handleChange} variant="outlined" label="Confirmar Senha" name="confirmPassword"
-                        placeholder="Confirmar senha inserida:" required margin="normal" fullWidth></TextField>
+                        type="password" autoComplete="off" placeholder="Confirmar senha inserida:" required margin="normal" fullWidth></TextField>
                     <TextField onChange={this.handleChange} variant="outlined" label="CPF" name="cpf"
                         placeholder="Insira seu CPF:" inputProps={{maxLength: 11, }} required margin="normal" fullWidth></TextField>
                     <TextField onChange={this.handleChange} variant="outlined" label="Carro" name="aux_brand"

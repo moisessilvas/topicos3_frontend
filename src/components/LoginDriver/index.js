@@ -71,8 +71,6 @@ class DriverLogin extends React.Component {
                         <br></br>
                             <MUIButton onClick={() => this.props.history.push("/cadastro")}  
                             type="submit" variant="contained" color="default"> Fazer cadastro</MUIButton>
-                        
-
                     </LoginColumn>
                 </LoginContainer>
             </LoginPage>

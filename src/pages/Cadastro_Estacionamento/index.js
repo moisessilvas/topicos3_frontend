@@ -7,14 +7,6 @@ import SignUpParkingLot from '../../components/SignUpParkingLot';
 export default function SignUp() {
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div>
-        <Typography component="h1" variant="h5">
-          Cadastrar Estacionamento
-        </Typography>
-        <SignUpParkingLot />
-      </div>
-    </Container>
+    <SignUpParkingLot />
   );
 }
