@@ -70,7 +70,7 @@ class DriverLogin extends React.Component {
                                 id="email" label="Email" name="email" autoComplete="email" autoFocus />
                             <LoginField  onChange={this.handleChange} variant="outlined" margin="normal" required fullWidth
                                 name="password" label="Senha" type="password" id="password" autoComplete="current-password" />
-                            <LoginButton type="submit" fullWidth variant="contained" color="primary">Entrar</LoginButton>
+                            <LoginButton onClick={() => this.handleSubmit} type="submit" fullWidth variant="contained" color="primary">Entrar</LoginButton>
                             <NavLink to="/Tela_RedefinirSenha" className="navlink-padrao-style"><p className="btn-fp-main">Esqueci a Senha</p></NavLink>
                         </LoginForm>
                     </LoginColumn>
