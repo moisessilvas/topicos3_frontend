@@ -43,7 +43,7 @@ class DriverLogin extends React.Component {
             try {
                 const response = await axios.post(`https://topicos3-back-end.herokuapp.com/driver/login`,  driver);
                 login(response.data.token);
-                this.props.history.push("/vagas");
+                this.props.history.push("/estacionamento");
                 console.log(response.data)
               } catch (err) {
                   console.log("Houve um problema com o login, verifique suas credenciais.")
