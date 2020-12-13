@@ -1,8 +1,17 @@
 import React from 'react';
-//import './../../../pages/Profissional_Saude/Login_M/style.css';
 import { login } from './../../services/Auth'
 import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import {
+    LoginContainer,
+    InitialBanner,
+    LoginPage,
+    LoginColumn,
+    LoginForm,
+    LoginField,
+    LoginButton
+} from '../LoginDriver/styles'
+import Typography from '@material-ui/core/Typography';
 
 //import da API
 import { authenticate } from './../../services/api';
@@ -31,7 +40,6 @@ class DriverLogin extends React.Component {
         if (!driver.email || !driver.password) {
             this.setState({ error: "Preencha e-mail e senha para continuar!" });
             console.log('Preencha e-mail e senha para continuar!')
-            // } else {api.post(`/authenticate/professional`, professional)
         } else {
             apiAuthenticate.DriverLogin(driver)
                 .then(res => {
@@ -50,12 +58,24 @@ class DriverLogin extends React.Component {
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleChange} name="email" placeholder="E-mail" required />
-                <input onChange={this.handleChange} name="password" type="password" placeholder="Senha" required />
-                <button onClick={() => this.handleSubmit}>Fazer Login</button>
-                <NavLink to="/Tela_RedefinirSenha" className="navlink-padrao-style"><p className="btn-fp-main">Esqueci a Senha</p></NavLink>
-            </form>
+            <LoginPage>
+                <InitialBanner item xs={false} sm={4} md={7}></InitialBanner>
+                <LoginContainer item xs={false} sm={4} md={7} item xs={12} sm={8} md={5}>
+                    <LoginColumn>
+                        <Typography component="h1" variant="h5" >
+                            Login
+                        </Typography>
+                        <LoginForm onSubmit={this.handleSubmit}>
+                            <LoginField  onChange={this.handleChange} variant="outlined" margin="normal" required fullWidth
+                                id="email" label="Email" name="email" autoComplete="email" autoFocus />
+                            <LoginField  onChange={this.handleChange} variant="outlined" margin="normal" required fullWidth
+                                name="password" label="Senha" type="password" id="password" autoComplete="current-password" />
+                            <LoginButton type="submit" fullWidth variant="contained" color="primary">Entrar</LoginButton>
+                            <NavLink to="/Tela_RedefinirSenha" className="navlink-padrao-style"><p className="btn-fp-main">Esqueci a Senha</p></NavLink>
+                        </LoginForm>
+                    </LoginColumn>
+                </LoginContainer>
+            </LoginPage>
         );
     }
 }

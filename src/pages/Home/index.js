@@ -60,20 +60,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   return (
-    <Grid container component="main">
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} id="capa"/>
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div>
-          <Avatar>
+    <FormLogin>
 
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Login
-          </Typography>
-          <FormLogin />
-        </div>
-      </Grid>
-    </Grid>
+    </FormLogin>
+    
+    // <Grid container component="main">
+    //   <CssBaseline />
+    //   <Grid item xs={false} sm={4} md={7} id="capa"/>
+    //   <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+    //     <div>
+    //       <Avatar>
+
+    //       </Avatar>
+    //       <Typography component="h1" variant="h5">
+    //         Login
+    //       </Typography>
+    //       <FormLogin />
+    //     </div>
+    //   </Grid>
+    //</Grid>
   );
 }
