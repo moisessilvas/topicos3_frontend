@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { VagasPage, ColorText, ColorH5 } from './styles';
+import { CenterPage, ColorText, ColorH5 } from './styles';
 import { AccessButton } from './styles';
 
 
@@ -23,7 +23,7 @@ class EstacionamentoComponent extends React.Component {
         return (
             <>
                 { this.state.vagas.map(vaga => 
-                <VagasPage key={vaga._id}>
+                <CenterPage key={vaga._id}>
                     <ColorText fontFamily="Arial">
                         <b>Nome do Estacionamento: </b>
                     </ColorText>
@@ -39,7 +39,7 @@ class EstacionamentoComponent extends React.Component {
                     <NavLink to={{ pathname: '/detalhes/' + vaga._id}}>
                         <AccessButton fullWidth variant="contained">Acessar</AccessButton>
                     </NavLink>
-                </VagasPage>)}
+                </CenterPage>)}
             </>
         )
     }

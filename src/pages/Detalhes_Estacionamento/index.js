@@ -1,8 +1,8 @@
 import React from 'react';
-import DetailsVagasComponent from '../../components/ParkingLotDetails';
+import DetailsEstacionamentoComponent from '../../components/ParkingLotDetails';
 
 export default function DisplayPage() {
   return (
-    <DetailsVagasComponent />
+    <DetailsEstacionamentoComponent />
   );
 }

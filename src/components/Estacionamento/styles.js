@@ -36,7 +36,7 @@ export const ColorTypography = withStyles({
     }
   })(Typography);
 
-export const VagasPage = styled(Card)`
+export const CenterPage = styled(Card)`
     width: 35%;
     margin: auto;
     padding:15px;
