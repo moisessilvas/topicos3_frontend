@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { login } from './../../services/Auth'
 import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
@@ -13,10 +14,6 @@ import {
 } from '../LoginDriver/styles'
 import Typography from '@material-ui/core/Typography';
 
-//import da API
-import { authenticate } from './../../services/api';
-let apiAuthenticate = new authenticate();
-
 class DriverLogin extends React.Component {
     constructor() {
         super();
@@ -29,31 +26,32 @@ class DriverLogin extends React.Component {
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value });
     }
-    handleSubmit = evt => {
+    handleSubmit = async evt => {
         evt.preventDefault();
 
         const driver = {
             email: this.state.email,
             password: this.state.password,
         };
-
+        console.log(driver);
+        console.log(driver.email);
+        console.log(driver.password);
         if (!driver.email || !driver.password) {
             this.setState({ error: "Preencha e-mail e senha para continuar!" });
             console.log('Preencha e-mail e senha para continuar!')
         } else {
-            apiAuthenticate.DriverLogin(driver)
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                    console.log(driver);
-                    login(res.data.token, res.data._id);
-                    localStorage.setItem('driver_id', res.data._id);
-                    this.props.history.push("/vagas");
-                    window.location.reload(false); // Reload da pagina para automaticamente atualizar a component
-                }
-                ).catch(error => {
-                    alert("E-mail ou Senha incorretos!")
-                })
+            try {
+                const response = await axios.post(`https://topicos3-back-end.herokuapp.com/driver/login`,  driver);
+                login(response.data.token);
+                this.props.history.push("/vagas");
+                console.log(response.data)
+              } catch (err) {
+                  console.log("Houve um problema com o login, verifique suas credenciais.")
+                this.setState({
+                  error:
+                    "Houve um problema com o login, verifique suas credenciais."
+                });
+              }
         }
     }
     render() {
