@@ -38,7 +38,7 @@ class UpdateParkingLotComponent extends React.Component {
                 console.log(res.data)
                 this.setState({ estacionamento });
                 alert("Status de vaga alterado com sucesso!");
-                window.location.reload();
+                //window.location.reload();
             })
       }
 

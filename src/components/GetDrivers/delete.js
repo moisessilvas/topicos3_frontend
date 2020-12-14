@@ -17,7 +17,7 @@ class DeleteDriversComponent extends React.Component {
                 console.log(res.data);
                 alert("Usuário deletado com sucesso!");
                 //this.props.history.push("/mostrar_motoristas");
-                window.location.reload();
+                //window.location.reload();
             })
 
     }

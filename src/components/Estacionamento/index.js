@@ -40,6 +40,10 @@ class EstacionamentoComponent extends React.Component {
                         <AccessButton fullWidth variant="contained">Acessar</AccessButton>
                     </NavLink>
                 </CenterPage>)}
+                <NavLink to="/mostrar_motoristas">
+                        <AccessButton fullWidth variant="contained" type="secondary">Mostrar Motoristas cadastrados</AccessButton>
+                </NavLink>
+                <br></br>
             </>
         )
     }
