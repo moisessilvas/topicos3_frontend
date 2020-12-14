@@ -3,18 +3,22 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { CenterPage, ColorText, ColorH5, LoginButton, AccessButton } from './styles';
+import UpdateStatus from './vagaStatus'
+import Grid from '@material-ui/core/Grid';
 
 var token = localStorage.getItem('user_token');
 
 class DetailsEstacionamentoComponent extends React.Component {
-
-
     state = {
-        estacionamento: []
+        estacionamento: [],
+        estacionamento_id: this.props.match.params.id,
+        vaga_id: ""
     }
 
+
+
     componentDidMount() {
-        axios.get(`https://topicos3-back-end.herokuapp.com/parkingLot/parkingSpace/5fd14c306465f031149eed06`)
+        axios.get(`https://topicos3-back-end.herokuapp.com/parkingLot/parkingSpace/${this.state.estacionamento_id}`)
             .then(res => {
                 const estacionamento = res.data;
                 console.log(res.data)
@@ -22,45 +26,21 @@ class DetailsEstacionamentoComponent extends React.Component {
             })
     }
 
-    handleChange(evt) {
-        this.setState({ [evt.target.name]: evt.target.value });
-    }
-
-    handleSubmit = async evt => {
-        evt.preventDefault();
-
-        await axios.put(`https://topicos3-back-end.herokuapp.com/parkingSpace/5fd14c326465f031149eed0b`)
-            .then(res => {
-                const estacionamento = res.data;
-                console.log(res.data)
-                this.setState({ estacionamento });
-                alert("Usuário autenticado com sucesso!");
-                this.props.history.push("/Tela_");
-            }, {
-                headers: {
-                    "x-access-token": token
-                }
-              })
-      }
-
-
     render() {
         return (
             <>
+            <Grid container item xs={12} spacing={1}>
                 { this.state.estacionamento.map(vaga =>
-                    <CenterPage key={vaga._id}>
+                <Grid key={vaga._id} container item xs={4} spacing={3}>
+                    <CenterPage >
                         <ColorText fontFamily="Arial">
-                            <b>Identificação da vaga: </b>
-                            <ColorH5>{vaga.numericID}</ColorH5>
-                        </ColorText>
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                          <AccessButton onClick={() => this.handleSubmit}>Aceitar</AccessButton>
-                        </div>
-                    </form>
+                            <b>Identificação da vaga </b> </ColorText>
+                        <ColorH5>{vaga.numericID}</ColorH5>
+                        <UpdateStatus id={vaga._id} key={vaga._id} status={vaga.isFree}></UpdateStatus>
                     </CenterPage>
+                    </Grid>
                 )}
-
+            </Grid>
             </>
         )
     }

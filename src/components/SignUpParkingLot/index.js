@@ -13,6 +13,7 @@ class SignUpParkLot extends React.Component {
             name: "",
             cnpj: "",
             parkingSpacesTotal: "",
+            parkingSpacesOccupied: ""
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -26,17 +27,11 @@ class SignUpParkLot extends React.Component {
             name: this.state.name,
             cnpj: parseInt(this.state.cnpj),
             parkingSpacesTotal: parseInt(this.state.parkingSpacesTotal),
+            parkingSpacesOccupied: 0
         };
 
-        var token = localStorage.getItem("user_token")
 
-        console.log(token);
-
-        axios.post(`https://topicos3-back-end.herokuapp.com/parkingLot`, parkingLot, {
-            headers: {
-                "x-access-token": token
-            }
-        })
+        axios.post(`https://topicos3-back-end.herokuapp.com/parkingLot`, parkingLot)
             .then(res => {
                 console.log(res);
                 console.log(res.data);

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { login } from './../../services/Auth'
+import { login, login_id } from './../../services/Auth'
 import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import {
@@ -41,6 +41,7 @@ class DriverLogin extends React.Component {
             try {
                 const response = await axios.post(`https://topicos3-back-end.herokuapp.com/driver/login`, driver);
                 login(response.data.token);
+                login_id(response.data.driver._id);
                 this.props.history.push("/estacionamento");
                 console.log(response.data)
             } catch (err) {

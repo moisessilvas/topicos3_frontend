@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 
 export const AccessButton = styled.button`
   background: ${props => props.primary ? "#000000" : "#003b01"};
-  color: ${props => props.primary ? "white" : "white"};
+  color: ${props => props.primary ? "red" : "white"};
   font-size: 1em;
   margin: 0em;
   padding: 0.25em 1em;
